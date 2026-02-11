@@ -56,9 +56,10 @@ body {
   z-index: 0;
 }
 
-/* Content */
+/* Main Content */
 .content {
   z-index: 2;
+  max-width: 600px;
   animation: fadeIn 1.5s ease forwards;
 }
 
@@ -92,6 +93,34 @@ p {
   50% { transform: scale(1.08); }
   100% { transform: scale(1); }
 }
+
+/* Photos */
+.side-photo {
+  position: absolute;
+  width: 120px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(255,255,255,0.5);
+  opacity: 0;
+  transform: scale(0.6);
+  transition: all 0.6s ease;
+  z-index: 1;
+}
+
+.side-photo.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Left side */
+.photo1 { top: 20%; left: 8%; }
+.photo2 { top: 50%; left: 5%; }
+
+/* Right side */
+.photo3 { top: 25%; right: 8%; }
+.photo4 { top: 50%; right: 5%; }
+.photo5 { bottom: 18%; right: 10%; }
 
 /* Confetti */
 .confetti {
@@ -146,6 +175,13 @@ p {
 <div class="stars"></div>
 <div class="moon"></div>
 
+<!-- 5 PHOTOS -->
+<img src="pic1.jpg" class="side-photo photo1">
+<img src="pic2.jpg" class="side-photo photo2">
+<img src="pic3.jpg" class="side-photo photo3">
+<img src="pic4.jpg" class="side-photo photo4">
+<img src="pic5.jpg" class="side-photo photo5">
+
 <div class="content">
   <h1>SHE SAID YES!!! 💚💚💚</h1>
   <p>This is officially the best Valentine’s ever 🎉</p>
@@ -193,24 +229,27 @@ function createHearts() {
   heart.innerHTML = "💖";
   heart.style.left = Math.random() * 100 + "vw";
   heart.style.fontSize = (Math.random() * 20 + 15) + "px";
-
   const duration = Math.random() * 3 + 4;
   heart.style.animationDuration = duration + "s";
-
   document.body.appendChild(heart);
   setTimeout(() => heart.remove(), duration * 1000);
 }
 
 window.onload = () => {
   explodeConfetti();
-
-  // Continuous floating hearts
   setInterval(createHearts, 400);
 
-  // Show surprise button after 15 seconds
+  // Sequential photo pop (1.2s medium pace)
+  const photos = document.querySelectorAll(".side-photo");
+  photos.forEach((photo, index) => {
+    setTimeout(() => {
+      photo.classList.add("show");
+    }, 1200 * (index + 1));
+  });
+
+  // Surprise button after 15 seconds
   setTimeout(() => {
-    const btn = document.getElementById("surpriseBtn");
-    btn.classList.add("show");
+    document.getElementById("surpriseBtn").classList.add("show");
   }, 15000);
 };
 </script>
