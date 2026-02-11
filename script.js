@@ -16,23 +16,23 @@ document.addEventListener("DOMContentLoaded", () => {
   let lineIndex = 0;
   let charIndex = 0;
 
-  // Step 1: open envelope
+  // Open envelope
   setTimeout(() => {
     envelope.classList.add("open");
-  }, 1500);
+  }, 1200);
 
-  // Step 2: center & expand letter
+  // Bring letter to center and expand
   setTimeout(() => {
-    letter.classList.add("center");
+    letter.classList.add("show");
     typeText();
-  }, 3800);
+  }, 3000);
 
   function typeText() {
     if (lineIndex < text.length) {
       if (charIndex < text[lineIndex].length) {
-        lines[lineIndex].textContent += text[lineIndex].charAt(charIndex);
+        lines[lineIndex].textContent += text[lineIndex][charIndex];
         charIndex++;
-        setTimeout(typeText, 60); // slow typing
+        setTimeout(typeText, 60);
       } else {
         lineIndex++;
         charIndex = 0;
