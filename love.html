@@ -165,4 +165,44 @@ function explodeConfetti() {
     confetti.style.top = "50%";
 
     const angle = Math.random() * 2 * Math.PI;
-    const distance = Math.random(
+    const distance = Math.random() * 600 + 200;
+    const x = Math.cos(angle) * distance;
+    const y = Math.sin(angle) * distance;
+
+    confetti.animate([
+      { transform: "translate(0,0) rotate(0deg)", opacity: 1 },
+      { transform: `translate(${x}px, ${y}px) rotate(720deg)`, opacity: 0 }
+    ], {
+      duration: 2000 + Math.random() * 1000,
+      easing: "ease-out"
+    });
+
+    document.body.appendChild(confetti);
+    setTimeout(() => confetti.remove(), 3000);
+  }
+}
+
+function createHearts() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML = "💖";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+  heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 6000);
+}
+
+window.onload = () => {
+  explodeConfetti();
+  setInterval(createHearts, 500);
+
+  // Show surprise button after 15 seconds
+  setTimeout(() => {
+    document.getElementById("surpriseBtn").classList.add("show");
+  }, 15000);
+};
+</script>
+
+</body>
+</html>
