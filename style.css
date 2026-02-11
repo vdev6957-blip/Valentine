@@ -71,7 +71,16 @@ body.home-page {
 /* ================= SECOND PAGE ONLY ================= */
 
 body.letter-page {
-  background: linear-gradient(135deg, #f3eef6, #e4dced);
+  background: 
+    linear-gradient(
+      rgba(243, 238, 246, 0.75),
+      rgba(228, 220, 237, 0.75)
+    ),
+    url("bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -79,6 +88,7 @@ body.letter-page {
   overflow: hidden;
   font-family: "Georgia", serif;
 }
+
 
 /* Envelope */
 .envelope-wrapper {
@@ -164,6 +174,7 @@ body.letter-page {
 
 
 /* Hint t*
+
 
 
 
