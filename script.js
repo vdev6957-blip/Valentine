@@ -39,7 +39,12 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(typeText, 700);
       }
     } else {
+      // Add signature when done
       signature.textContent = "— Yours, always 💖";
+
+      // Show the "Liked my letter?" button safely
+      const nextWrapper = document.getElementById("next-wrapper");
+      nextWrapper.style.display = "block";
     }
   }
 });
