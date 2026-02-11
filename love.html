@@ -107,15 +107,31 @@ p {
 }
 
 @keyframes floatUp {
-  0% {
-    transform: translateY(100vh) scale(0.8);
-    opacity: 0;
-  }
+  0% { transform: translateY(100vh) scale(0.8); opacity: 0; }
   20% { opacity: 1; }
-  100% {
-    transform: translateY(-10vh) scale(1.2);
-    opacity: 0;
-  }
+  100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+}
+
+/* Surprise Button */
+.surprise-btn {
+  position: absolute;
+  bottom: 60px;
+  padding: 15px 35px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(45deg, #ff4da6, #ff0066);
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(255,77,166,0.8);
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.5s ease;
+}
+
+.surprise-btn.show {
+  opacity: 1;
+  transform: scale(1);
 }
 </style>
 </head>
@@ -134,55 +150,19 @@ p {
   </div>
 </div>
 
+<button class="surprise-btn" id="surpriseBtn">
+  You thought this was the end? hehe nahhh 😏
+</button>
+
 <script>
 function explodeConfetti() {
   const colors = ["#ff3f7f", "#00ff88", "#ffcc00", "#00c3ff", "#ffffff"];
-
   for (let i = 0; i < 180; i++) {
     const confetti = document.createElement("div");
     confetti.classList.add("confetti");
-
     confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
     confetti.style.left = "50%";
     confetti.style.top = "50%";
 
     const angle = Math.random() * 2 * Math.PI;
-    const distance = Math.random() * 600 + 200;
-
-    const x = Math.cos(angle) * distance;
-    const y = Math.sin(angle) * distance;
-
-    confetti.animate([
-      { transform: "translate(0,0) rotate(0deg)", opacity: 1 },
-      { transform: `translate(${x}px, ${y}px) rotate(720deg)`, opacity: 0 }
-    ], {
-      duration: 2000 + Math.random() * 1000,
-      easing: "ease-out"
-    });
-
-    document.body.appendChild(confetti);
-    setTimeout(() => confetti.remove(), 3000);
-  }
-}
-
-function createHearts() {
-  const heart = document.createElement("div");
-  heart.classList.add("heart");
-  heart.innerHTML = "💖";
-
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.fontSize = (Math.random() * 20 + 15) + "px";
-  heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
-
-  document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 6000);
-}
-
-window.onload = () => {
-  explodeConfetti();
-  setInterval(createHearts, 500);
-};
-</script>
-
-</body>
-</html>
+    const distance = Math.random(
