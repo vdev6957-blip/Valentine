@@ -68,6 +68,8 @@ body.home-page {
 
 /* ================= SECOND PAGE ONLY ================= */
 
+/* ================= SECOND PAGE ONLY ================= */
+
 body.letter-page {
   background: linear-gradient(135deg, #f3eef6, #e4dced);
   height: 100vh;
@@ -90,7 +92,6 @@ body.letter-page {
   border-radius: 6px;
   position: relative;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-  z-index: 1;
 }
 
 /* Flap */
@@ -102,23 +103,32 @@ body.letter-page {
   background: #f0bfd4;
   clip-path: polygon(0 0, 50% 60%, 100% 0);
   transform-origin: top;
-  transition: transform 1.5s ease;
+  transition: transform 1.2s ease;
 }
 
-/* Letter (initial state: hidden & small) */
+/* Letter (hidden inside envelope) */
 .letter {
   position: absolute;
   top: 20px;
   left: 50%;
-  transform: translateX(-50%) translateY(0) scale(0.25);
+  transform: translateX(-50%) scale(0.3);
   opacity: 0;
-  transition: transform 1.8s ease, opacity 1.2s ease;
+  transition: all 1.6s ease;
   z-index: 2;
+}
+
+/* Letter visible & centered */
+.letter.show {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
 }
 
 /* Paper */
 .paper {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.96);
   padding: 28px;
   border-radius: 16px;
   backdrop-filter: blur(8px);
@@ -136,7 +146,6 @@ body.letter-page {
   font-size: 16px;
   line-height: 1.65;
   color: #444;
-  word-wrap: break-word;
 }
 
 /* Signature */
@@ -147,26 +156,14 @@ body.letter-page {
   text-align: right;
 }
 
-/* Envelope opens */
+/* Envelope open */
 .envelope.open .flap {
   transform: rotateX(180deg);
 }
 
-/* Letter comes out */
-.envelope.open .letter {
-  opacity: 1;
-  transform: translateX(-50%) translateY(-220px) scale(1);
-}
-
-/* Letter centers & expands */
-.letter.center {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(1);
-}
 
 
 /* Hint t*
+
 
 
