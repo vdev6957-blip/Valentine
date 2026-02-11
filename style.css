@@ -66,6 +66,8 @@ body.home-page {
 /* ================= SECOND PAGE ONLY ================= */
 /* This will NOT affect the first page */
 
+/* ================= SECOND PAGE ONLY ================= */
+
 body.letter-page {
   background: linear-gradient(135deg, #f3eef6, #e4dced);
   height: 100vh;
@@ -76,12 +78,11 @@ body.letter-page {
   font-family: "Georgia", serif;
 }
 
-/* Envelope wrapper */
+/* Envelope */
 .envelope-wrapper {
   position: relative;
 }
 
-/* Envelope */
 .envelope {
   width: 260px;
   height: 170px;
@@ -89,10 +90,10 @@ body.letter-page {
   border-radius: 6px;
   position: relative;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-  transition: opacity 1s ease;
+  z-index: 1;
 }
 
-/* Envelope flap */
+/* Flap */
 .flap {
   position: absolute;
   top: 0;
@@ -104,62 +105,68 @@ body.letter-page {
   transition: transform 1.5s ease;
 }
 
-/* Letter container */
+/* Letter (initial state: hidden & small) */
 .letter {
   position: absolute;
-  top: 15px;
-  left: 10px;
-  right: 10px;
-  transform: translateY(0) scale(0.25);
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(0) scale(0.25);
   opacity: 0;
-  transition: transform 1.8s ease, opacity 1.5s ease;
+  transition: transform 1.8s ease, opacity 1.2s ease;
+  z-index: 2;
 }
 
-/* Paper (IMPORTANT: keeps text inside) */
+/* Paper */
 .paper {
   background: rgba(255, 255, 255, 0.95);
-  padding: 24px;
-  border-radius: 14px;
+  padding: 28px;
+  border-radius: 16px;
   backdrop-filter: blur(8px);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
 
-  width: 320px;
-  max-height: 380px;
+  width: 80vw;
+  max-width: 520px;
+  max-height: 75vh;
   overflow: hidden;
 }
 
-/* Text inside letter */
+/* Text */
 .paper p {
-  margin: 10px 0;
+  margin: 12px 0;
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.65;
   color: #444;
   word-wrap: break-word;
 }
 
 /* Signature */
 .signature {
-  margin-top: 18px;
+  margin-top: 22px;
   font-style: italic;
   color: #b04a7c;
   text-align: right;
 }
 
-/* Envelope open animation */
+/* Envelope opens */
 .envelope.open .flap {
   transform: rotateX(180deg);
 }
 
-/* Letter slides out + expands */
+/* Letter comes out */
 .envelope.open .letter {
-  transform: translateY(-220px) scale(1);
   opacity: 1;
+  transform: translateX(-50%) translateY(-220px) scale(1);
 }
 
-/* Envelope fades away after opening */
-.envelope.fade {
-  opacity: 0;
+/* Letter centers & expands */
+.letter.center {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
 }
+
 
 /* Hint t*
+
 
