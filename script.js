@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const envelope = document.querySelector(".envelope");
+  const letter = document.querySelector(".letter");
   const lines = document.querySelectorAll(".line");
   const signature = document.querySelector(".signature");
 
@@ -15,14 +16,14 @@ document.addEventListener("DOMContentLoaded", () => {
   let lineIndex = 0;
   let charIndex = 0;
 
-  // Open envelope
+  // Step 1: open envelope
   setTimeout(() => {
     envelope.classList.add("open");
   }, 1500);
 
-  // Fade envelope & start typing
+  // Step 2: center & expand letter
   setTimeout(() => {
-    envelope.classList.add("fade");
+    letter.classList.add("center");
     typeText();
   }, 3800);
 
@@ -35,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         lineIndex++;
         charIndex = 0;
-        setTimeout(typeText, 700); // pause between paragraphs
+        setTimeout(typeText, 700);
       }
     } else {
       signature.textContent = "— Yours, always 💖";
