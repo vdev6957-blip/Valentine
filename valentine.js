@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const yesBtn = document.getElementById("yes-btn");
   const noBtn = document.getElementById("no-btn");
 
-  // No button texts with emojis
   const noTexts = [
     "Are you sure? 🤔",
     "Really sure? 😳",
@@ -35,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const newScale = parseFloat(currentScale) + 0.2;
       yesBtn.style.transform = `scale(${newScale})`;
 
-      // Adjust No button position to avoid overlap
+      // Move No button slightly right to avoid overlap
       const yesWidth = yesBtn.offsetWidth * newScale;
       noBtn.style.marginLeft = `${yesWidth / 2}px`;
 
