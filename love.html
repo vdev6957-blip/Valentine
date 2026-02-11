@@ -35,6 +35,7 @@ body {
     90vw 75vh white,
     50vw 50vh white;
   animation: twinkle 2s infinite alternate;
+  z-index: 0;
 }
 
 @keyframes twinkle {
@@ -52,6 +53,7 @@ body {
   background: radial-gradient(circle, #fff 40%, #ddd 70%);
   border-radius: 50%;
   box-shadow: 0 0 60px rgba(255,255,255,0.6);
+  z-index: 0;
 }
 
 /* Content */
@@ -96,14 +98,16 @@ p {
   position: absolute;
   width: 8px;
   height: 14px;
+  z-index: 1;
 }
 
 /* Floating Hearts */
 .heart {
   position: absolute;
   font-size: 20px;
-  animation: floatUp 6s linear infinite;
+  animation: floatUp linear forwards;
   opacity: 0.8;
+  z-index: 1;
 }
 
 @keyframes floatUp {
@@ -126,7 +130,8 @@ p {
   box-shadow: 0 0 20px rgba(255,77,166,0.8);
   opacity: 0;
   transform: scale(0);
-  transition: all 0.5s ease;
+  transition: all 0.6s ease;
+  z-index: 3;
 }
 
 .surprise-btn.show {
@@ -188,18 +193,24 @@ function createHearts() {
   heart.innerHTML = "💖";
   heart.style.left = Math.random() * 100 + "vw";
   heart.style.fontSize = (Math.random() * 20 + 15) + "px";
-  heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
+
+  const duration = Math.random() * 3 + 4;
+  heart.style.animationDuration = duration + "s";
+
   document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 6000);
+  setTimeout(() => heart.remove(), duration * 1000);
 }
 
 window.onload = () => {
   explodeConfetti();
-  setInterval(createHearts, 500);
+
+  // Continuous floating hearts
+  setInterval(createHearts, 400);
 
   // Show surprise button after 15 seconds
   setTimeout(() => {
-    document.getElementById("surpriseBtn").classList.add("show");
+    const btn = document.getElementById("surpriseBtn");
+    btn.classList.add("show");
   }, 15000);
 };
 </script>
