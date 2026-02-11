@@ -5,14 +5,14 @@
   <title>Be My Valentine 💖</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    /* ===== Valentine Page ===== */
     body.valentine-page {
       height: 100vh;
       background: linear-gradient(135deg, #ffe6e6, #ffd9f0);
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      padding-top: 80px;
       text-align: center;
     }
 
@@ -20,10 +20,6 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
-      height: 100%;
-      padding-top: 50px;
-      text-align: center;
     }
 
     .valentine-container h1 {
@@ -35,7 +31,6 @@
     .button-wrapper {
       display: flex;
       justify-content: center;
-      margin-top: 30px;
       gap: 20px;
       flex-wrap: wrap;
     }
@@ -78,4 +73,10 @@
     <h1>Will you be my Valentine? 💖</h1>
     <div class="button-wrapper">
       <button id="yes-btn" class="btn yes-btn">Yes 💚</button>
-      <button id="no-btn" class="btn no-btn">No ❌</
+      <button id="no-btn" class="btn no-btn">No ❌</button>
+    </div>
+  </div>
+
+  <script src="valentine.js"></script>
+</body>
+</html>
