@@ -113,14 +113,14 @@ p {
   transform: scale(1);
 }
 
-/* Left side */
-.photo1 { top: 20%; left: 8%; }
-.photo2 { top: 50%; left: 5%; }
+/* LEFT SIDE (2 photos) */
+.photo1 { top: 22%; left: 6%; }
+.photo2 { top: 58%; left: 6%; }
 
-/* Right side */
-.photo3 { top: 25%; right: 8%; }
-.photo4 { top: 50%; right: 5%; }
-.photo5 { bottom: 18%; right: 10%; }
+/* RIGHT SIDE (3 photos — evenly spaced, no overlap) */
+.photo3 { top: 18%; right: 6%; }
+.photo4 { top: 42%; right: 6%; }
+.photo5 { top: 66%; right: 6%; }
 
 /* Confetti */
 .confetti {
@@ -239,7 +239,7 @@ window.onload = () => {
   explodeConfetti();
   setInterval(createHearts, 400);
 
-  // Sequential photo pop (1.2s medium pace)
+  // Sequential photo pop (medium pace 1.2s)
   const photos = document.querySelectorAll(".side-photo");
   photos.forEach((photo, index) => {
     setTimeout(() => {
