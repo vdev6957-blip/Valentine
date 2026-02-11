@@ -26,12 +26,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   noBtn.addEventListener("click", () => {
     if (step < noTexts.length) {
-      // Change No button text
+      // Update No button text
       noBtn.textContent = noTexts[step];
 
-      // Grow Yes button by 0.2 each click
+      // Grow Yes button by 0.15 each click
       const currentScale = yesBtn.style.transform.replace(/[^0-9.]/g, "") || 1;
-      const newScale = parseFloat(currentScale) + 0.2;
+      const newScale = parseFloat(currentScale) + 0.15;
       yesBtn.style.transform = `scale(${newScale})`;
 
       // Move No button slightly right to avoid overlap
@@ -43,7 +43,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   yesBtn.addEventListener("click", () => {
-    // Redirect to the confetti/love page
     window.location.href = "love.html";
   });
 });
