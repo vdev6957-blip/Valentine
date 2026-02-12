@@ -222,7 +222,7 @@ document.getElementById("surpriseBtn").addEventListener("click", function() {
 <script>
 const music = document.getElementById("bgMusic");
 
-// Restore saved time
+// Resume time if exists
 const savedTime = localStorage.getItem("musicTime");
 if (savedTime) {
   music.currentTime = savedTime;
@@ -230,17 +230,22 @@ if (savedTime) {
 
 music.volume = 0.4;
 
-// Play after first interaction (browser rule)
-document.addEventListener("click", () => {
-  music.play();
-}, { once: true });
+// Force play on first interaction (ANY click)
+function startMusic() {
+  music.play().catch(() => {});
+  document.removeEventListener("click", startMusic);
+}
 
-// Save current time before leaving page
+document.addEventListener("click", startMusic);
+
+// Save time when leaving page
 window.addEventListener("beforeunload", () => {
   localStorage.setItem("musicTime", music.currentTime);
 });
 </script>
 
+
 </body>
 </html>
+
 
