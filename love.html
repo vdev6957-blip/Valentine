@@ -12,66 +12,22 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   background: radial-gradient(ellipse at bottom, #0d1b2a 0%, #000000 100%);
   color: white;
-}
-
-/* Stars */
-.stars {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: white;
-  box-shadow:
-    20vw 10vh white,
-    40vw 20vh white,
-    60vw 30vh white,
-    80vw 40vh white,
-    10vw 70vh white,
-    30vw 80vh white,
-    70vw 60vh white,
-    90vw 75vh white,
-    50vw 50vh white;
-  animation: twinkle 2s infinite alternate;
-  z-index: 0;
-}
-
-@keyframes twinkle {
-  from { opacity: 0.3; }
-  to { opacity: 1; }
-}
-
-/* Moon */
-.moon {
-  position: absolute;
-  top: 10%;
-  right: 10%;
-  width: 120px;
-  height: 120px;
-  background: radial-gradient(circle, #fff 40%, #ddd 70%);
-  border-radius: 50%;
-  box-shadow: 0 0 60px rgba(255,255,255,0.6);
-  z-index: 0;
+  position: relative;
 }
 
 /* Main Content */
 .content {
+  text-align: center;
   z-index: 2;
   max-width: 600px;
-  animation: fadeIn 1.5s ease forwards;
 }
 
 h1 {
   font-size: 3rem;
   color: #00ff88;
-  margin-bottom: 20px;
-}
-
-p {
-  font-size: 1.4rem;
-  margin: 10px 0;
 }
 
 .love-text {
@@ -83,20 +39,33 @@ p {
   animation: pulse 1.5s infinite;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.8); }
-  to { opacity: 1; transform: scale(1); }
-}
-
 @keyframes pulse {
   0% { transform: scale(1); }
   50% { transform: scale(1.08); }
   100% { transform: scale(1); }
 }
 
-/* Photos */
-.side-photo {
+/* SIDE CONTAINERS */
+.side {
   position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 25px; /* spacing between photos */
+  z-index: 1;
+}
+
+.left-side {
+  left: 40px;
+}
+
+.right-side {
+  right: 40px;
+}
+
+/* PHOTOS */
+.side img {
   width: 120px;
   height: 150px;
   object-fit: cover;
@@ -105,29 +74,18 @@ p {
   opacity: 0;
   transform: scale(0.6);
   transition: all 0.6s ease;
-  z-index: 1;
 }
 
-.side-photo.show {
+.side img.show {
   opacity: 1;
   transform: scale(1);
 }
-
-/* LEFT SIDE (2 photos) */
-.photo1 { top: 22%; left: 6%; }
-.photo2 { top: 58%; left: 6%; }
-
-/* RIGHT SIDE (3 photos — evenly spaced, no overlap) */
-.photo3 { top: 18%; right: 6%; }
-.photo4 { top: 42%; right: 6%; }
-.photo5 { top: 66%; right: 6%; }
 
 /* Confetti */
 .confetti {
   position: absolute;
   width: 8px;
   height: 14px;
-  z-index: 1;
 }
 
 /* Floating Hearts */
@@ -136,7 +94,6 @@ p {
   font-size: 20px;
   animation: floatUp linear forwards;
   opacity: 0.8;
-  z-index: 1;
 }
 
 @keyframes floatUp {
@@ -160,7 +117,6 @@ p {
   opacity: 0;
   transform: scale(0);
   transition: all 0.6s ease;
-  z-index: 3;
 }
 
 .surprise-btn.show {
@@ -172,15 +128,18 @@ p {
 
 <body>
 
-<div class="stars"></div>
-<div class="moon"></div>
+<!-- LEFT SIDE (2 Photos) -->
+<div class="side left-side">
+  <img src="pic1.jpg">
+  <img src="pic2.jpg">
+</div>
 
-<!-- 5 PHOTOS -->
-<img src="pic1.jpg" class="side-photo photo1">
-<img src="pic2.jpg" class="side-photo photo2">
-<img src="pic3.jpg" class="side-photo photo3">
-<img src="pic4.jpg" class="side-photo photo4">
-<img src="pic5.jpg" class="side-photo photo5">
+<!-- RIGHT SIDE (3 Photos) -->
+<div class="side right-side">
+  <img src="pic3.jpg">
+  <img src="pic4.jpg">
+  <img src="pic5.jpg">
+</div>
 
 <div class="content">
   <h1>SHE SAID YES!!! 💚💚💚</h1>
@@ -239,15 +198,14 @@ window.onload = () => {
   explodeConfetti();
   setInterval(createHearts, 400);
 
-  // Sequential photo pop (medium pace 1.2s)
-  const photos = document.querySelectorAll(".side-photo");
+  // Sequential photo pop (1.2s medium pace)
+  const photos = document.querySelectorAll(".side img");
   photos.forEach((photo, index) => {
     setTimeout(() => {
       photo.classList.add("show");
     }, 1200 * (index + 1));
   });
 
-  // Surprise button after 15 seconds
   setTimeout(() => {
     document.getElementById("surpriseBtn").classList.add("show");
   }, 15000);
