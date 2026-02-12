@@ -16,6 +16,33 @@
       💖 Read My Letter
     </a>
   </div>
+<audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const music = document.getElementById("bgMusic");
+
+// Restore saved time
+const savedTime = localStorage.getItem("musicTime");
+if (savedTime) {
+  music.currentTime = savedTime;
+}
+
+music.volume = 0.4;
+
+// Play after first interaction (browser rule)
+document.addEventListener("click", () => {
+  music.play();
+}, { once: true });
+
+// Save current time before leaving page
+window.addEventListener("beforeunload", () => {
+  localStorage.setItem("musicTime", music.currentTime);
+});
+</script>
 
 </body>
+  
 </html>
+
