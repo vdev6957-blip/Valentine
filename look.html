@@ -36,38 +36,17 @@ h1 {
 </head>
 
 <body>
-  <h1>Look at me 👀🔥</h1>
-  <audio id="bgMusic" loop>
-  <source src="music.mp3" type="audio/mpeg">
-</audio>
-
-<script>
-const music = document.getElementById("bgMusic");
-
-const savedTime = localStorage.getItem("musicTime");
-if (savedTime) {
-  music.currentTime = savedTime;
-}
-
-music.volume = 0.4;
-
-document.addEventListener("click", () => {
-  music.play();
-}, { once: true });
-
-// Fade out after 5 seconds
-setTimeout(() => {
-  let fade = setInterval(() => {
-    if (music.volume > 0.02) {
-      music.volume -= 0.02;
-    } else {
-      music.volume = 0;
-      clearInterval(fade);
-    }
-  }, 200);
-}, 3000);
+  <script>
+window.onload = function() {
+  const frame = document.getElementById("musicFrame");
+  frame.contentWindow.postMessage("fadeOut", "*");
+};
 </script>
+
+  <h1>Look at me 👀🔥</h1>
+  
 
 </body>
 </html>
+
 
