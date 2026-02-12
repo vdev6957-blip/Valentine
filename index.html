@@ -17,24 +17,24 @@
       💖 Read My Letter
     </a>
   </div>
-
-  <!-- Hidden audio player -->
-  <audio id="valentineMusic">
-    <source src="music.mp3" type="audio/mpeg">
-  </audio>
-
-  <script>
-    const audio = document.getElementById("valentineMusic");
-    const btn = document.getElementById("startBtn");
-
-    btn.addEventListener("click", () => {
-      audio.play().catch(err => {
-        console.log("Music play blocked:", err);
-      });
       // Proceed to next page after click
       window.location.href = "letter.html";
     });
   </script>
+<audio id="bgMusic" autoplay loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  const music = document.getElementById("bgMusic");
+  music.volume = 0.4;
+
+  // Autoplay fix for browsers
+  document.addEventListener("click", () => {
+    music.play();
+  }, { once: true });
+</script>
 
 </body>
 </html>
+
