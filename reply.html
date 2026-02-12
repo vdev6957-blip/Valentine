@@ -2,154 +2,110 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Our Valentine Plan 💘</title>
+<title>Our Plan 💖</title>
 
 <style>
 body {
   margin: 0;
   height: 100vh;
+  background: linear-gradient(135deg, #1a1a1a, #000000);
+  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: linear-gradient(135deg, #ff9ecf, #ffd6ec);
 }
 
-.card {
-  background: white;
-  padding: 45px;
-  border-radius: 20px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+.container {
   text-align: center;
-  width: 90%;
-  max-width: 550px;
-}
-
-h1 {
-  color: #ff3f7f;
-  margin-bottom: 15px;
-}
-
-p {
-  color: #444;
-  margin-bottom: 25px;
-  line-height: 1.6;
-}
-
-.input-row {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
-  margin-bottom: 15px;
+  max-width: 600px;
 }
 
 input {
-  width: 110px;
-  padding: 12px;
-  border-radius: 12px;
-  border: 2px solid #ff3f7f;
+  width: 80px;
+  padding: 10px;
+  margin: 10px;
+  font-size: 1.1rem;
   text-align: center;
-  font-size: 1rem;
+  border-radius: 8px;
+  border: none;
 }
 
 button {
-  margin-top: 10px;
-  padding: 12px 30px;
+  margin-top: 20px;
+  padding: 12px 25px;
+  font-size: 1rem;
   border: none;
   border-radius: 25px;
-  background: #ff3f7f;
+  background: #ff4da6;
   color: white;
-  font-size: 1rem;
   cursor: pointer;
   transition: 0.3s;
 }
 
 button:hover {
-  transform: scale(1.08);
+  transform: scale(1.1);
 }
 
-.response {
-  margin-top: 20px;
-  font-size: 1.1rem;
-  color: #ff3f7f;
-  font-weight: bold;
+#result {
+  margin-top: 25px;
+  font-size: 1.2rem;
+  color: #00ff88;
+}
+
+.next-btn {
+  display: none;
+  margin-top: 30px;
+  background: #00ff88;
+  color: black;
 }
 </style>
 </head>
 
 <body>
 
-<div class="card">
-  <h1>Our Valentine Plan 💘</h1>
+<div class="container">
+  <h2>Since you are my Valentine now 😌💖</h2>
+  <p>Of course I wanna spend some time with you...</p>
+  <p>So tell me, what time are you free on Feb 14? 👀</p>
+  <p>(Between 0 and 12.30 only)</p>
 
-  <p>
-    Since you are my Valentine now… 😌❤️<br><br>
-    Of course I want to spend time with you 💕<br><br>
-    Tell me what time you’re free on <b>Feb 14</b> 👀<br>
-    (Enter numbers between 0 and 12.30)
-  </p>
+  <input type="number" id="start" placeholder="From" step="0.5" min="0" max="12.5">
+  <input type="number" id="end" placeholder="To" step="0.5" min="0" max="12.5">
 
-  <div class="input-row">
-    <input 
-      type="number" 
-      id="startTime" 
-      step="0.1" 
-      min="0" 
-      max="12.3" 
-      placeholder="Start"
-    >
+  <br>
+  <button onclick="confirmTime()">Confirm 😏</button>
 
-    <span style="font-size:1.5rem;">–</span>
+  <div id="result"></div>
 
-    <input 
-      type="number" 
-      id="endTime" 
-      step="0.1" 
-      min="0" 
-      max="12.3" 
-      placeholder="End"
-    >
-  </div>
-
-  <button onclick="submitTime()">Confirm 💌</button>
-
-  <div class="response" id="response"></div>
+  <button class="next-btn" id="nextBtn" onclick="goNext()">
+    Be Ready 😈
+  </button>
 </div>
 
 <script>
-function submitTime() {
-  const startInput = document.getElementById("startTime").value;
-  const endInput = document.getElementById("endTime").value;
+function confirmTime() {
+  const start = parseFloat(document.getElementById("start").value);
+  const end = parseFloat(document.getElementById("end").value);
+  const result = document.getElementById("result");
+  const nextBtn = document.getElementById("nextBtn");
 
-  const start = parseFloat(startInput);
-  const end = parseFloat(endInput);
-
-  const response = document.getElementById("response");
-
-  if (startInput === "" || endInput === "") {
-    response.innerHTML = "Please enter both time slots 😌";
+  if (
+    isNaN(start) || isNaN(end) ||
+    start < 0 || end > 12.5 ||
+    start >= end
+  ) {
+    result.innerHTML = "Enter a valid time between 0 and 12.30 😅";
+    nextBtn.style.display = "none";
     return;
   }
 
-  if (isNaN(start) || isNaN(end)) {
-    response.innerHTML = "Please enter valid numbers 💕";
-    return;
-  }
+  result.innerHTML = `Perfect 😌 Feb 14th at ${start}–${end} PM is now officially ours 💖✨`;
+  nextBtn.style.display = "inline-block";
+}
 
-  if (start < 0 || end < 0 || start > 12.3 || end > 12.3) {
-    response.innerHTML = "Time must be between 0 and 12.30 only 💕";
-    return;
-  }
-
-  if (end <= start) {
-    response.innerHTML = "End time must be after start time 😏";
-    return;
-  }
-
-  // Show EXACT values typed
-  response.innerHTML =
-    `Perfect 😌 Feb 14th at <b>${startInput}–${endInput} PM</b> is now officially ours 💖✨`;
+function goNext() {
+  window.location.href = "look.html";
 }
 </script>
 
