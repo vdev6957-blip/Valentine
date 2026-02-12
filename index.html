@@ -5,23 +5,31 @@
   <title>For You 💖</title>
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body class="home-page">
-
-  <!-- MUSIC PLAYER -->
-  <audio id="valentineMusic" autoplay>
-    <source src="music.mp3" type="audio/mpeg">
-  </audio>
 
   <div class="container">
     <h1>Hi Sinch 💖</h1>
     <p>I know you’re surprised 😳</p>
     <p>Something special is waiting for you 💌</p>
 
-    <a href="letter.html" class="btn">
+    <a href="letter.html" class="btn" id="startBtn">
       💖 Read My Letter
     </a>
   </div>
+
+  <!-- MUSIC PLAYER (hidden) -->
+  <audio id="valentineMusic">
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const audio = document.getElementById("valentineMusic");
+    const startBtn = document.getElementById("startBtn");
+
+    startBtn.addEventListener("click", (e) => {
+      audio.play(); // Start music when button is clicked
+    });
+  </script>
 
 </body>
 </html>
