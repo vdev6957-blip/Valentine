@@ -128,13 +128,11 @@ h1 {
 
 <body>
 
-<!-- LEFT SIDE (2 Photos) -->
 <div class="side left-side">
   <img src="pic1.jpg">
   <img src="pic2.jpg">
 </div>
 
-<!-- RIGHT SIDE (2 Photos ONLY) -->
 <div class="side right-side">
   <img src="pic3.jpg">
   <img src="pic4.jpg">
@@ -149,12 +147,9 @@ h1 {
   </div>
 </div>
 
-<!-- WORKING BUTTON -->
-<a href="reply.html">
-  <button class="surprise-btn" id="surpriseBtn">
-    You thought this was the end? hehe nahhh 😏
-  </button>
-</a>
+<button class="surprise-btn" id="surpriseBtn">
+  You thought this was the end? hehe nahhh 😏
+</button>
 
 <script>
 function explodeConfetti() {
@@ -210,6 +205,11 @@ window.onload = () => {
   setTimeout(() => {
     document.getElementById("surpriseBtn").classList.add("show");
   }, 15000);
+
+  // ✅ BUTTON REDIRECT (keeps position normal)
+  document.getElementById("surpriseBtn").addEventListener("click", function() {
+    window.location.href = "reply.html";
+  });
 };
 </script>
 
