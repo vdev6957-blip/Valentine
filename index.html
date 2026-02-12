@@ -12,29 +12,37 @@
     <p>I know you’re surprised 😳</p>
     <p>Something special is waiting for you 💌</p>
 
-    <!-- Button that starts the music -->
-    <a href="letter.html" class="btn" id="startBtn">
+    <!-- Button that goes to the next page -->
+    <a href="letter.html" class="btn" id="readLetterBtn">
       💖 Read My Letter
     </a>
   </div>
-      // Proceed to next page after click
+
+  <!-- Hidden audio player -->
+  <audio id="valentineMusic">
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const audio = document.getElementById("valentineMusic");
+    const btn = document.getElementById("readLetterBtn");
+    let musicStarted = false;
+
+    // Start music on first click anywhere on the page
+    document.body.addEventListener("click", () => {
+      if (!musicStarted) {
+        audio.play().catch(err => console.log("Music blocked:", err));
+        musicStarted = true;
+      }
+    }, { once: true }); // ensures it only triggers once
+
+    // Navigate to the letter page when button is clicked
+    btn.addEventListener("click", (e) => {
+      e.preventDefault(); // prevent default anchor jump
+      // Music already started, just navigate
       window.location.href = "letter.html";
     });
   </script>
-<audio id="bgMusic" autoplay loop>
-  <source src="music.mp3" type="audio/mpeg">
-</audio>
-
-<script>
-  const music = document.getElementById("bgMusic");
-  music.volume = 0.4;
-
-  // Autoplay fix for browsers
-  document.addEventListener("click", () => {
-    music.play();
-  }, { once: true });
-</script>
 
 </body>
 </html>
-
