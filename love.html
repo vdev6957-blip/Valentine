@@ -207,6 +207,12 @@ window.onload = () => {
   setTimeout(() => {
     document.getElementById("surpriseBtn").classList.add("show");
   }, 15000);
+
+  // ONLY FIX: Make button work
+  document.getElementById("surpriseBtn").addEventListener("click", function() {
+    window.location.href = "time.html";
+  });
+
 };
 </script>
 
