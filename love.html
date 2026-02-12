@@ -52,7 +52,7 @@ h1 {
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
-  gap: 25px; /* spacing between photos */
+  gap: 40px;
   z-index: 1;
 }
 
@@ -66,8 +66,8 @@ h1 {
 
 /* PHOTOS */
 .side img {
-  width: 120px;
-  height: 150px;
+  width: 130px;
+  height: 160px;
   object-fit: cover;
   border-radius: 15px;
   box-shadow: 0 0 20px rgba(255,255,255,0.5);
@@ -134,11 +134,10 @@ h1 {
   <img src="pic2.jpg">
 </div>
 
-<!-- RIGHT SIDE (3 Photos) -->
+<!-- RIGHT SIDE (2 Photos ONLY) -->
 <div class="side right-side">
   <img src="pic3.jpg">
   <img src="pic4.jpg">
-  <img src="pic5.jpg">
 </div>
 
 <div class="content">
@@ -198,7 +197,6 @@ window.onload = () => {
   explodeConfetti();
   setInterval(createHearts, 400);
 
-  // Sequential photo pop (1.2s medium pace)
   const photos = document.querySelectorAll(".side img");
   photos.forEach((photo, index) => {
     setTimeout(() => {
