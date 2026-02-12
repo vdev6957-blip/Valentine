@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Our Valentine Plan 💘</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: linear-gradient(135deg, #ff9ecf, #ffd6ec);
+}
+
+.card {
+  background: white;
+  padding: 45px;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  text-align: center;
+  width: 90%;
+  max-width: 550px;
+}
+
+h1 {
+  color: #ff3f7f;
+  margin-bottom: 15px;
+}
+
+p {
+  color: #444;
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+.input-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+input {
+  width: 110px;
+  padding: 12px;
+  border-radius: 12px;
+  border: 2px solid #ff3f7f;
+  text-align: center;
+  font-size: 1rem;
+}
+
+button {
+  margin-top: 10px;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 25px;
+  background: #ff3f7f;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.08);
+}
+
+.response {
+  margin-top: 20px;
+  font-size: 1.1rem;
+  color: #ff3f7f;
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <h1>Our Valentine Plan 💘</h1>
+
+  <p>
+    Since you are my Valentine now… 😌❤️<br><br>
+    Of course I want to spend time with you 💕<br><br>
+    Tell me what time you’re free on <b>Feb 14</b> 👀<br>
+    (Enter numbers between 0 and 12.30)
+  </p>
+
+  <div class="input-row">
+    <input 
+      type="number" 
+      id="startTime" 
+      step="0.1" 
+      min="0" 
+      max="12.3" 
+      placeholder="Start"
+    >
+
+    <span style="font-size:1.5rem;">–</span>
+
+    <input 
+      type="number" 
+      id="endTime" 
+      step="0.1" 
+      min="0" 
+      max="12.3" 
+      placeholder="End"
+    >
+  </div>
+
+  <button onclick="submitTime()">Confirm 💌</button>
+
+  <div class="response" id="response"></div>
+</div>
+
+<script>
+function submitTime() {
+  const startInput = document.getElementById("startTime").value;
+  const endInput = document.getElementById("endTime").value;
+
+  const start = parseFloat(startInput);
+  const end = parseFloat(endInput);
+
+  const response = document.getElementById("response");
+
+  if (startInput === "" || endInput === "") {
+    response.innerHTML = "Please enter both time slots 😌";
+    return;
+  }
+
+  if (isNaN(start) || isNaN(end)) {
+    response.innerHTML = "Please enter valid numbers 💕";
+    return;
+  }
+
+  if (start < 0 || end < 0 || start > 12.3 || end > 12.3) {
+    response.innerHTML = "Time must be between 0 and 12.30 only 💕";
+    return;
+  }
+
+  if (end <= start) {
+    response.innerHTML = "End time must be after start time 😏";
+    return;
+  }
+
+  // Show EXACT values typed
+  response.innerHTML =
+    `Perfect 😌 Feb 14th at <b>${startInput}–${endInput} PM</b> is now officially ours 💖✨`;
+}
+</script>
+
+</body>
+</html>
