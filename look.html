@@ -36,17 +36,31 @@ h1 {
 </head>
 
 <body>
-  <script>
-window.onload = function() {
-  const frame = document.getElementById("musicFrame");
-  frame.contentWindow.postMessage("fadeOut", "*");
+<!-- Fade out music -->
+<script>
+window.onload = () => {
+  const music = window.opener ? window.opener.document.getElementById("valentineMusic") : null;
+  if (!music) return;
+
+  let volume = music.volume;
+  const fadeOut = setInterval(() => {
+    if (volume > 0.05) {
+      volume -= 0.05;
+      music.volume = volume;
+    } else {
+      music.pause();
+      clearInterval(fadeOut);
+    }
+  }, 300);
 };
 </script>
+
 
   <h1>Look at me 👀🔥</h1>
   
 
 </body>
 </html>
+
 
 
