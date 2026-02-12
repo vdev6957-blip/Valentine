@@ -12,22 +12,27 @@
     <p>I know you’re surprised 😳</p>
     <p>Something special is waiting for you 💌</p>
 
+    <!-- Button that starts the music -->
     <a href="letter.html" class="btn" id="startBtn">
       💖 Read My Letter
     </a>
   </div>
 
-  <!-- MUSIC PLAYER (hidden) -->
+  <!-- Hidden audio player -->
   <audio id="valentineMusic">
     <source src="music.mp3" type="audio/mpeg">
   </audio>
 
   <script>
     const audio = document.getElementById("valentineMusic");
-    const startBtn = document.getElementById("startBtn");
+    const btn = document.getElementById("startBtn");
 
-    startBtn.addEventListener("click", (e) => {
-      audio.play(); // Start music when button is clicked
+    btn.addEventListener("click", () => {
+      audio.play().catch(err => {
+        console.log("Music play blocked:", err);
+      });
+      // Proceed to next page after click
+      window.location.href = "letter.html";
     });
   </script>
 
