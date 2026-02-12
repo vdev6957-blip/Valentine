@@ -149,9 +149,10 @@ h1 {
   </div>
 </div>
 
-<button class="surprise-btn" id="surpriseBtn">
+<button class="surprise-btn" id="surpriseBtn" onclick="goNext()">
   You thought this was the end? hehe nahhh 😏
 </button>
+
 
 <script>
 function explodeConfetti() {
@@ -208,7 +209,12 @@ window.onload = () => {
     document.getElementById("surpriseBtn").classList.add("show");
   }, 15000);
 };
+  function goNext() {
+  window.location.href = "reply.html";
+}
+
 </script>
 
 </body>
 </html>
+
