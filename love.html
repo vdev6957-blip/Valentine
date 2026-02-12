@@ -2,172 +2,218 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>I Love You 💖</title>
-<link rel="stylesheet" href="style.css">
+<title>She Said Yes 💚</title>
 
 <style>
 body {
   margin: 0;
+  height: 100vh;
   overflow: hidden;
-  background: radial-gradient(circle at center, #ff4d88, #1a0010);
-  font-family: 'Georgia', serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: radial-gradient(ellipse at bottom, #0d1b2a 0%, #000000 100%);
   color: white;
-  text-align: center;
-}
-
-/* Glow effect */
-body::before {
-  content: "";
-  position: fixed;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(255,255,255,0.15), transparent 70%);
-  animation: glowMove 6s infinite alternate ease-in-out;
-  z-index: 0;
-}
-
-@keyframes glowMove {
-  from { transform: translate(-10%, -10%) scale(1); }
-  to { transform: translate(10%, 10%) scale(1.2); }
-}
-
-.content {
   position: relative;
+}
+
+/* Main Content */
+.content {
+  text-align: center;
   z-index: 2;
-  top: 35%;
-  transform: translateY(-50%);
+  max-width: 600px;
 }
 
 h1 {
+  font-size: 3rem;
+  color: #00ff88;
+}
+
+.love-text {
   font-size: 4rem;
-  margin-bottom: 20px;
-}
-
-.big-love {
-  font-size: 3.5rem;
+  margin-top: 40px;
   font-weight: bold;
-  color: #ffd6ec;
+  color: #ff4da6;
+  text-shadow: 0 0 25px rgba(255,77,166,0.9);
+  animation: pulse 1.5s infinite;
 }
 
-/* Photos */
-.photo {
-  position: fixed;
-  width: 120px;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 15px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-  opacity: 0;
-  transform: scale(0.5);
-  transition: all 0.6s ease;
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+/* SIDE CONTAINERS */
+.side {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
   z-index: 1;
 }
 
-.photo.show {
+.left-side {
+  left: 40px;
+}
+
+.right-side {
+  right: 40px;
+}
+
+/* PHOTOS */
+.side img {
+  width: 130px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(255,255,255,0.5);
+  opacity: 0;
+  transform: scale(0.6);
+  transition: all 0.6s ease;
+}
+
+.side img.show {
   opacity: 1;
   transform: scale(1);
 }
 
-/* Fixed positions (no overlap now) */
-#p1 { left: 5%; top: 15%; }
-#p2 { left: 5%; bottom: 15%; }
-#p3 { right: 5%; top: 15%; }
-#p4 { right: 5%; bottom: 15%; }
-
-/* Next button */
-.next-btn {
-  position: fixed;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%) scale(0);
-  padding: 16px 30px;
-  font-size: 18px;
-  border: none;
-  border-radius: 30px;
-  background: white;
-  color: #ff2e75;
-  cursor: pointer;
-  transition: 0.4s ease;
-  z-index: 3;
+/* Confetti */
+.confetti {
+  position: absolute;
+  width: 8px;
+  height: 14px;
 }
 
-.next-btn.show {
-  transform: translateX(-50%) scale(1);
+/* Floating Hearts */
+.heart {
+  position: absolute;
+  font-size: 20px;
+  animation: floatUp linear forwards;
+  opacity: 0.8;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(100vh) scale(0.8); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+}
+
+/* Surprise Button */
+.surprise-btn {
+  position: absolute;
+  bottom: 60px;
+  padding: 15px 35px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(45deg, #ff4da6, #ff0066);
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(255,77,166,0.8);
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.6s ease;
+}
+
+.surprise-btn.show {
+  opacity: 1;
+  transform: scale(1);
 }
 </style>
 </head>
 
 <body>
 
-<div class="content">
-  <h1>She said YES!!! 💖</h1>
-  <div class="big-love">I LOVE YOU 💞</div>
+<!-- LEFT SIDE (2 Photos) -->
+<div class="side left-side">
+  <img src="pic1.jpg">
+  <img src="pic2.jpg">
 </div>
 
-<!-- Photos -->
-<img src="photo1.jpg" class="photo" id="p1">
-<img src="photo2.jpg" class="photo" id="p2">
-<img src="photo3.jpg" class="photo" id="p3">
-<img src="photo4.jpg" class="photo" id="p4">
+<!-- RIGHT SIDE (2 Photos ONLY) -->
+<div class="side right-side">
+  <img src="pic3.jpg">
+  <img src="pic4.jpg">
+</div>
 
-<!-- Button -->
-<button class="next-btn" id="nextBtn">
-  You thought this was the end? Hehe nahhh 😏
+<div class="content">
+  <h1>SHE SAID YES!!! 💚💚💚</h1>
+  <p>This is officially the best Valentine’s ever 🎉</p>
+  <p>You’re stuck with me now 😌💍</p>
+  <div class="love-text">
+    I LOVE YOU ❤️
+  </div>
+</div>
+
+<button class="surprise-btn" id="surpriseBtn">
+  You thought this was the end? hehe nahhh 😏
 </button>
 
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
 <script>
-// 💥 Dramatic one-time explosion
-confetti({
-  particleCount: 400,
-  spread: 180,
-  origin: { y: 0.6 }
-});
+function explodeConfetti() {
+  const colors = ["#ff3f7f", "#00ff88", "#ffcc00", "#00c3ff", "#ffffff"];
+  for (let i = 0; i < 180; i++) {
+    const confetti = document.createElement("div");
+    confetti.classList.add("confetti");
+    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    confetti.style.left = "50%";
+    confetti.style.top = "50%";
 
-// 💗 Floating hearts
-function createHeart() {
-  const heart = document.createElement("div");
-  heart.innerHTML = "💖";
-  heart.style.position = "fixed";
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.bottom = "-20px";
-  heart.style.fontSize = Math.random() * 20 + 20 + "px";
-  heart.style.animation = "floatUp 6s linear";
-  document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 6000);
+    const angle = Math.random() * 2 * Math.PI;
+    const distance = Math.random() * 600 + 200;
+    const x = Math.cos(angle) * distance;
+    const y = Math.sin(angle) * distance;
+
+    confetti.animate([
+      { transform: "translate(0,0) rotate(0deg)", opacity: 1 },
+      { transform: `translate(${x}px, ${y}px) rotate(720deg)`, opacity: 0 }
+    ], {
+      duration: 2000 + Math.random() * 1000,
+      easing: "ease-out"
+    });
+
+    document.body.appendChild(confetti);
+    setTimeout(() => confetti.remove(), 3000);
+  }
 }
 
-setInterval(createHeart, 600);
+function createHearts() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML = "💖";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+  const duration = Math.random() * 3 + 4;
+  heart.style.animationDuration = duration + "s";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), duration * 1000);
+}
 
-// Add heart animation
-const style = document.createElement("style");
-style.innerHTML = `
-@keyframes floatUp {
-  to {
-    transform: translateY(-110vh);
-    opacity: 0;
-  }
-}`;
-document.head.appendChild(style);
+window.onload = () => {
+  explodeConfetti();
+  setInterval(createHearts, 400);
 
-// 📸 Photo pop sequence (medium pace)
-const photos = ["p1","p2","p3","p4"];
-photos.forEach((id, index) => {
+  const photos = document.querySelectorAll(".side img");
+  photos.forEach((photo, index) => {
+    setTimeout(() => {
+      photo.classList.add("show");
+    }, 1200 * (index + 1));
+  });
+
   setTimeout(() => {
-    document.getElementById(id).classList.add("show");
-  }, 1200 * (index + 1));
-});
+    document.getElementById("surpriseBtn").classList.add("show");
+  }, 15000);
 
-// ⏳ Show button after 15 seconds
-setTimeout(() => {
-  document.getElementById("nextBtn").classList.add("show");
-}, 15000);
+  // ✅ BUTTON FIX (ONLY ADDITION)
+  document.getElementById("surpriseBtn").addEventListener("click", function() {
+    window.location.href = "time.html"; 
+  });
 
-// ✅ FIXED BUTTON CLICK
-document.getElementById("nextBtn").addEventListener("click", function() {
-  window.location.href = "time.html"; 
-});
+};
 </script>
 
 </body>
